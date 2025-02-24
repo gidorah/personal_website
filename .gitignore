@@ -278,3 +278,6 @@ webpack-stats.json
 .env
 .envs/*
 !.envs/.local/
+
+# git-crypt
+.git-crypt-key
