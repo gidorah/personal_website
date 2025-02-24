@@ -29,9 +29,13 @@ jobs:
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v5
         with:
-          context: ./compose/production/django
+          context: .
+          file: ./compose/production/django/Dockerfile
           push: true
           tags: ghcr.io/${{ github.repository_owner }}/personal_website:latest
+          build-args: |
+            PYTHON_VERSION=3.11-slim-bookworm # Or any other version
+
           # You might also want to include a more specific tag (e.g., git SHA)
           #  tags: |
           #     ghcr.io/${{ github.repository_owner }}/your-app-name:${{ github.sha }}
