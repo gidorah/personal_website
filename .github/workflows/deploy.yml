@@ -54,4 +54,4 @@ jobs:
             docker pull ghcr.io/${{ github.repository_owner }}/personal_website:latest
             docker stop personal_website || true
             docker rm personal_website || true
-            docker run -d -p 80:8000 --name personal_website ghcr.io/${{ github.repository_owner }}/personal_website:latest
+            docker run -d --name personal_website --env-file ~/personal_website/.env ghcr.io/${{ github.repository_owner }}/personal_website:latest
