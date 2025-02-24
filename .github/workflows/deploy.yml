@@ -40,3 +40,16 @@ jobs:
           #  tags: |
           #     ghcr.io/${{ github.repository_owner }}/your-app-name:${{ github.sha }}
           #     ghcr.io/${{ github.repository_owner }}/your-app-name:latest
+
+      - name: Deploy to Hetzner via SSH
+        uses: appleboy/ssh-action@v1.0.3 # Or a later version
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            docker pull ghcr.io/${{ github.repository_owner }}/personal_website:latest
+            docker stop personal_website || true
+            docker rm personal_website || true
+            docker run -d -p 80:8000 --name personal_website ghcr.io/${{ github.repository_owner }}/personal_website:latest
