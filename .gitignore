@@ -282,3 +282,4 @@ webpack-stats.json
 .gitsecret/keys/random_seed
 !*.secret
 secret.key*
+.gitsecret/keys/allowed_users
