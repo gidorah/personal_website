@@ -36,10 +36,11 @@ jobs:
           tags: ghcr.io/${{ github.repository_owner }}/personal_website:latest
 
       - name: Import GPG key and decrypt
+        env:
+          GPG_TTY: $(tty)
         run: |
           echo "${{ secrets.GIT_SECRET_KEY }}" | base64 -d > private.key
-          gpg --import private.key
-          gpg --trust-ownertrust always
+          gpg --batch --yes --trust-model always --import private.key # Import, force trust
           git secret reveal -d
 
       - name: Deploy to Hetzner via SSH
