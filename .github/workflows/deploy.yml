@@ -10,4 +10,5 @@ jobs:
     runs-on: ubuntu-latest # Use the latest Ubuntu runner
 
     steps:
-      # We'll add steps here in the following parts
+      - name: Placeholder Step
+        run: echo "Workflow started. Deployment steps will be added here."
