@@ -45,7 +45,7 @@ jobs:
 
           echo "${{ secrets.GIT_SECRET_KEY }}" | base64 -d > private.key
           gpg --batch --yes --import private.key
-          git secret reveal -d
+          git secret reveal
 
       - name: Deploy to Hetzner via SSH
         uses: appleboy/ssh-action@v1.0.3
