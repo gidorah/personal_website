@@ -31,6 +31,9 @@ services:
       REDIS_URL: ${REDIS_URL}
       CELERY_FLOWER_USER: ${CELERY_FLOWER_USER}
       CELERY_FLOWER_PASSWORD: ${CELERY_FLOWER_PASSWORD}
+      MAILGUN_API_KEY: ''
+      MAILGUN_DOMAIN: ''
+      DJANGO_SERVER_EMAIL: ''
 
   postgres:
     image: ghcr.io/gidorah/personal_website_postgres:latest
