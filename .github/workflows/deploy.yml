@@ -44,6 +44,15 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
 
           script: |
+            echo "ls root:"
+            ls -la /
+            echo "--------------"
+            echo "ls current folder:"
+            ls -la
+            echo "--------------"
+            "pwd:"
+            pwd
+            echo "--------------"
             echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
             docker compose -f docker-compose.production.yml pull
             docker compose -f docker-compose.production.yml up -d --build
