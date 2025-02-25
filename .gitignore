@@ -278,8 +278,3 @@ webpack-stats.json
 .envs/*
 .env
 !.envs/.local/
-
-.gitsecret/keys/random_seed
-!*.secret
-secret.key*
-.gitsecret/keys/allowed_users
