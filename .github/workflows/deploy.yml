@@ -42,18 +42,19 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
-
+          working_dir: /app
           script: |
-            echo "ls root:"
-            ls -la /
-            echo "--------------"
-            echo "ls current folder:"
-            ls -la
-            echo "--------------"
-            "pwd:"
-            pwd
-            echo "--------------"
             echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
+
+            # Pull the Django image (which contains docker-compose.yml)
+            docker pull ghcr.io/${{ github.repository_owner }}/personal_website:latest
+
+            # Create a temporary container to copy the compose file
+            docker create --name temp_container ghcr.io/${{ github.repository_owner }}/personal_website:latest
+            docker cp temp_container:/app/docker-compose.production.yml .
+            docker rm temp_container
+
+            # Now we can use docker compose
             docker compose -f docker-compose.production.yml pull
             docker compose -f docker-compose.production.yml up -d --build
         env:
