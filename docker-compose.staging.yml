@@ -19,7 +19,7 @@ services:
       - .env
 
   postgres:
-    image: ghcr.io/gidorah/personal_website_postgres:latest # GHCR image
+    image: ghcr.io/gidorah/personal_website_postgres:latest
     volumes:
       - production_postgres_data:/var/lib/postgresql/data
       - production_postgres_data_backups:/backups
@@ -27,7 +27,7 @@ services:
       - .env
 
   traefik:
-    image: ghcr.io/gidorah/personal_website_traefik:latest # GHCR Image
+    image: ghcr.io/gidorah/personal_website_traefik:latest
     depends_on:
       - django
     volumes:
@@ -63,7 +63,7 @@ services:
     command: /start-flower
 
   nginx:
-    image: ghcr.io/gidorah/personal_website_nginx:latest # GHCR Image
+    image: ghcr.io/gidorah/personal_website_nginx:latest
     depends_on:
       - django
     volumes:
