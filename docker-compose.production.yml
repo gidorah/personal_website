@@ -9,9 +9,6 @@ volumes:
 services:
   django: &django
     image: ghcr.io/gidorah/personal_website:latest
-    build:
-      context: .
-      dockerfile: ./compose/production/django/Dockerfile
     volumes:
       - production_django_media:/app/personal_website/media
     depends_on:
@@ -20,18 +17,12 @@ services:
     command: /start
 
   postgres:
-    build:
-      context: .
-      dockerfile: ./compose/production/postgres/Dockerfile
     image: ghcr.io/gidorah/personal_website_postgres:latest # GHCR image
     volumes:
       - production_postgres_data:/var/lib/postgresql/data
       - production_postgres_data_backups:/backups
 
   traefik:
-    build:
-      context: .
-      dockerfile: ./compose/production/traefik/Dockerfile
     image: ghcr.io/gidorah/personal_website_traefik:latest # GHCR Image
     depends_on:
       - django
@@ -64,9 +55,6 @@ services:
     command: /start-flower
 
   nginx:
-    build:
-      context: .
-      dockerfile: ./compose/production/nginx/Dockerfile
     image: ghcr.io/gidorah/personal_website_nginx:latest # GHCR Image
     depends_on:
       - django
