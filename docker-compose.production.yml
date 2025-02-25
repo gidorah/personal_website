@@ -23,7 +23,7 @@ services:
     build:
       context: .
       dockerfile: ./compose/production/postgres/Dockerfile
-    image: personal_website_production_postgres
+    image: ghcr.io/gidorah/personal_website_postgres:latest # GHCR image
     volumes:
       - production_postgres_data:/var/lib/postgresql/data
       - production_postgres_data_backups:/backups
@@ -32,7 +32,7 @@ services:
     build:
       context: .
       dockerfile: ./compose/production/traefik/Dockerfile
-    image: personal_website_production_traefik
+    image: ghcr.io/gidorah/personal_website_traefik:latest # GHCR Image
     depends_on:
       - django
     volumes:
@@ -50,24 +50,24 @@ services:
 
   celeryworker:
     <<: *django
-    image: personal_website_production_celeryworker
+    image: ghcr.io/gidorah/personal_website:latest
     command: /start-celeryworker
 
   celerybeat:
     <<: *django
-    image: personal_website_production_celerybeat
+    image: ghcr.io/gidorah/personal_website:latest
     command: /start-celerybeat
 
   flower:
     <<: *django
-    image: personal_website_production_flower
+    image: ghcr.io/gidorah/personal_website:latest
     command: /start-flower
 
   nginx:
     build:
       context: .
       dockerfile: ./compose/production/nginx/Dockerfile
-    image: personal_website_production_nginx
+    image: ghcr.io/gidorah/personal_website_nginx:latest # GHCR Image
     depends_on:
       - django
     volumes:

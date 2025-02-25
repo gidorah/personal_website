@@ -26,7 +26,7 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_TOKEN }}
 
-      - name: Build and Push Docker Image
+      - name: Build and Push Django Image
         uses: docker/build-push-action@v5
         with:
           context: .
@@ -34,6 +34,33 @@ jobs:
           push: true
           platforms: linux/arm64,linux/amd64
           tags: ghcr.io/${{ github.repository_owner }}/personal_website:latest
+
+      - name: Build and Push Postgres Image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./compose/production/postgres/Dockerfile
+          push: true
+          platforms: linux/arm64,linux/amd64
+          tags: ghcr.io/${{ github.repository_owner }}/personal_website_postgres:latest
+
+      - name: Build and Push Nginx Image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./compose/production/nginx/Dockerfile
+          push: true
+          platforms: linux/arm64,linux/amd64
+          tags: ghcr.io/${{ github.repository_owner }}/personal_website_nginx:latest
+
+      - name: Build and Push Traefik Image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./compose/production/traefik/Dockerfile
+          push: true
+          platforms: linux/arm64,linux/amd64
+          tags: ghcr.io/${{ github.repository_owner }}/personal_website_traefik:latest
 
       - name: Deploy to Hetzner via SSH
         uses: appleboy/ssh-action@v1.0.3
