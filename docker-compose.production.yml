@@ -8,7 +8,7 @@ volumes:
 
 services:
   django: &django
-    image: ghcr.io/gidorah/personal_website:latest
+    image: ghcr.io/gidorah/personal_website_django:latest
     volumes:
       - production_django_media:/app/personal_website/media
     depends_on:
@@ -62,17 +62,17 @@ services:
 
   celeryworker:
     <<: *django
-    image: ghcr.io/gidorah/personal_website:latest
+    image: ghcr.io/gidorah/personal_website_django:latest
     command: /start-celeryworker
 
   celerybeat:
     <<: *django
-    image: ghcr.io/gidorah/personal_website:latest
+    image: ghcr.io/gidorah/personal_website_django:latest
     command: /start-celerybeat
 
   flower:
     <<: *django
-    image: ghcr.io/gidorah/personal_website:latest
+    image: ghcr.io/gidorah/personal_website_django:latest
     command: /start-flower
 
   nginx:
