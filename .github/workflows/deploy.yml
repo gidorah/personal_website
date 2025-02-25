@@ -80,6 +80,20 @@ jobs:
             docker cp temp_container:/app/docker-compose.production.yml .
             docker rm temp_container
 
+            # Set environment variables and run docker compose
+            export POSTGRES_USER=${{ secrets.POSTGRES_USER }}
+            export POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
+            export POSTGRES_DB=${{ secrets.POSTGRES_DB }}
+            export POSTGRES_HOST=${{ secrets.POSTGRES_HOST }}
+            export POSTGRES_PORT=${{ secrets.POSTGRES_PORT || '5432' }}  # Use secret or default
+            export DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}
+            export DJANGO_ADMIN_URL=${{ secrets.DJANGO_ADMIN_URL }}
+            export DJANGO_ALLOWED_HOSTS=${{ secrets.DJANGO_ALLOWED_HOSTS }}
+            export SENTRY_DSN=${{ secrets.SENTRY_DSN }}
+            export REDIS_URL=${{ secrets.REDIS_URL }}
+            export CELERY_FLOWER_USER=${{ secrets.CELERY_FLOWER_USER }}
+            export CELERY_FLOWER_PASSWORD=${{ secrets.CELERY_FLOWER_PASSWORD }}
+
             # Stop and remove the previous containers
             docker compose -f docker-compose.production.yml down
 
