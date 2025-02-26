@@ -5,11 +5,11 @@ entryPoints:
   web:
     # http
     address: ':80'
-    http:
-      # https://doc.traefik.io/traefik/routing/entrypoints/#entrypoint
-      redirections:
-        entryPoint:
-          to: web-secure
+    # http:
+    #   # https://doc.traefik.io/traefik/routing/entrypoints/#entrypoint
+    #   redirections:
+    #     entryPoint:
+    #       to: web-secure
 
   web-secure:
     # https
