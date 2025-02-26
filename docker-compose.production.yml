@@ -45,17 +45,6 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
 
-  traefik:
-    image: ghcr.io/gidorah/personal_website_traefik:latest
-    depends_on:
-      - django
-    volumes:
-      - production_traefik:/etc/traefik/acme
-    ports:
-      - '127.0.0.1:8080:80' # Expose Traefik's port 80 to localhost:8080
-      - '127.0.0.1:8443:443' # Expose Traefik's port 443 to localhost:8443
-      - '127.0.0.1:5555:5555'
-
   redis:
     image: docker.io/redis:6
     volumes:
@@ -80,5 +69,6 @@ services:
     image: ghcr.io/gidorah/personal_website_nginx:latest
     depends_on:
       - django
-    volumes:
-      - production_django_media:/usr/share/nginx/media:ro
+    ports:
+      - "127.0.0.1:8080:80"
+      - "127.0.0.1:8443:443"
