@@ -27,7 +27,7 @@ jobs:
           password: ${{ secrets.GHCR_TOKEN }}
 
       - name: Build and Push Django Image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: .
           file: ./compose/production/django/Dockerfile
@@ -36,7 +36,7 @@ jobs:
           tags: ghcr.io/${{ github.repository_owner }}/personal_website_django:latest
 
       - name: Build and Push Postgres Image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: .
           file: ./compose/production/postgres/Dockerfile
@@ -45,7 +45,7 @@ jobs:
           tags: ghcr.io/${{ github.repository_owner }}/personal_website_postgres:latest
 
       - name: Build and Push Nginx Image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: .
           file: ./compose/production/nginx/Dockerfile
