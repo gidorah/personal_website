@@ -53,6 +53,16 @@ jobs:
           platforms: linux/arm64,linux/amd64
           tags: ghcr.io/${{ github.repository_owner }}/personal_website_nginx:latest
 
+      - name: Copy compose file to server
+        uses: appleboy/scp-action@v0.1.4 # Or another SCP action
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          source: 'docker-compose.production.yml'
+          target: '~/personal_website'
+
       - name: Deploy to Hetzner via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -60,16 +70,17 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
+          working-directory: '~/personal_website'
           script: |
             echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
 
             # Pull the Django image (which contains docker-compose.yml)
             docker pull ghcr.io/${{ github.repository_owner }}/personal_website_django:latest
 
-            # Create a temporary container to copy the compose file
-            docker create --name temp_container ghcr.io/${{ github.repository_owner }}/personal_website_django:latest
-            docker cp temp_container:/app/docker-compose.production.yml .
-            docker rm temp_container
+            # # Create a temporary container to copy the compose file
+            # docker create --name temp_container ghcr.io/${{ github.repository_owner }}/personal_website_django:latest
+            # docker cp temp_container:/app/docker-compose.production.yml .
+            # docker rm temp_container
 
             # Set environment variables and run docker compose
             export POSTGRES_USER=${{ secrets.POSTGRES_USER }}
