@@ -1,9 +1,9 @@
 # ruff: noqa: E501
-from .base import *  # noqa: F403
-from .base import INSTALLED_APPS
-from .base import MIDDLEWARE
-from .base import WEBPACK_LOADER
-from .base import env
+from config.settings.base import *  # noqa: F403
+from config.settings.base import INSTALLED_APPS
+from config.settings.base import MIDDLEWARE
+from config.settings.base import WEBPACK_LOADER
+from config.settings.base import env
 
 # GENERAL
 # ------------------------------------------------------------------------------
@@ -84,3 +84,15 @@ CELERY_TASK_EAGER_PROPAGATES = True
 WEBPACK_LOADER["DEFAULT"]["CACHE"] = not DEBUG
 # Your stuff...
 # ------------------------------------------------------------------------------
+
+REMOTE_DEBUGGING_PORT = env("REMOTE_DEBUGGING_PORT", default=None)
+
+if DEBUG and REMOTE_DEBUGGING_PORT:
+    DEBUG_PORT = int(REMOTE_DEBUGGING_PORT)
+
+    try:
+        import debugpy  # noqa: T100
+
+        debugpy.listen(("0.0.0.0", DEBUG_PORT))  # noqa: S104, T100
+    except Exception:  # noqa: BLE001, S110
+        pass
