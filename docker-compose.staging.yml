@@ -4,7 +4,7 @@ volumes:
 services:
   django:
     build:
-      context: .
+      context: ./backend
       dockerfile: ./compose/production/django/Dockerfile
     image: personal_website_production_django
     volumes:
@@ -19,7 +19,7 @@ services:
 
   nginx:
     build:
-      context: .
+      context: ./backend
       dockerfile: ./compose/production/nginx/Dockerfile
     image: personal_website_production_nginx
     depends_on:

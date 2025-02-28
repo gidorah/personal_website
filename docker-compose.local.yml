@@ -1,14 +1,15 @@
 services:
   django: &django
     build:
-      context: .
+      context: ./backend
       dockerfile: ./compose/local/django/Dockerfile
     image: personal_website_local_django
     container_name: personal_website_local_django
     volumes:
-      - .:/app
+      - ./backend:/app
+      - local_sqlite_data:/app/data
     env_file:
-      - ./.envs/.local/.django
+      - ./backend/.envs/.local/.django
     ports:
       - '8000:8000'
       - '5678:5678' # Debug port
@@ -17,4 +18,4 @@ services:
     command: /start
 
 volumes:
-  sqlite-data:
+  local_sqlite_data: {}
