@@ -1,73 +1,27 @@
 volumes:
-  production_postgres_data: {}
-  production_postgres_data_backups: {}
-  production_traefik: {}
-  production_django_media: {}
-  production_redis_data: {}
+  production_sqlite_data: {}
 
 services:
-  django: &django
+  django:
     image: ghcr.io/gidorah/personal_website_django:latest
     volumes:
-      - production_django_media:/app/personal_website/media
-    depends_on:
-      - postgres
-      - redis
+      - production_sqlite_data:/app/data
     command: /start
     environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_HOST: ${POSTGRES_HOST}
-      POSTGRES_PORT: ${POSTGRES_PORT}
-      DJANGO_SETTINGS_MODULE: config.settings.production
-      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
-      DJANGO_ADMIN_URL: ${DJANGO_ADMIN_URL}
-      DJANGO_SECURE_SSL_REDIRECT: ${DJANGO_SECURE_SSL_REDIRECT:-False}
-      DJANGO_ACCOUNT_ALLOW_REGISTRATION: ${DJANGO_ACCOUNT_ALLOW_REGISTRATION:-True}
-      WEB_CONCURRENCY: ${WEB_CONCURRENCY:-4}
-      SENTRY_DSN: ${SENTRY_DSN}
-      REDIS_URL: ${REDIS_URL}
-      CELERY_FLOWER_USER: ${CELERY_FLOWER_USER}
-      CELERY_FLOWER_PASSWORD: ${CELERY_FLOWER_PASSWORD}
-      MAILGUN_API_KEY: ''
-      MAILGUN_DOMAIN: ''
-      DJANGO_SERVER_EMAIL: ''
-
-  postgres:
-    image: ghcr.io/gidorah/personal_website_postgres:latest
-    volumes:
-      - production_postgres_data:/var/lib/postgresql/data
-      - production_postgres_data_backups:/backups
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
-
-  redis:
-    image: docker.io/redis:6
-    volumes:
-      - production_redis_data:/data
-
-  celeryworker:
-    <<: *django
-    image: ghcr.io/gidorah/personal_website_django:latest
-    command: /start-celeryworker
-
-  celerybeat:
-    <<: *django
-    image: ghcr.io/gidorah/personal_website_django:latest
-    command: /start-celerybeat
-
-  flower:
-    <<: *django
-    image: ghcr.io/gidorah/personal_website_django:latest
-    command: /start-flower
+      - DJANGO_SETTINGS_MODULE=personal_website.settings
+      - BUILD_ENV=production
+      - PYTHONPATH=/app
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
+      - DJANGO_SECURE_SSL_REDIRECT=${DJANGO_SECURE_SSL_REDIRECT:-False}
+      - WEB_CONCURRENCY=${WEB_CONCURRENCY:-4}
+      - DJANGO_ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
+      - CSRF_TRUSTED_ORIGINS=${CSRF_TRUSTED_ORIGINS}
+      - SENTRY_DSN=${SENTRY_DSN}
 
   nginx:
     image: ghcr.io/gidorah/personal_website_nginx:latest
     depends_on:
       - django
     ports:
-      - "127.0.0.1:8080:80"
-      - "127.0.0.1:8443:443"
+      - '127.0.0.1:8080:80'
+      - '127.0.0.1:8443:443'

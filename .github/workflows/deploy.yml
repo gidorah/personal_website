@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - 14-get-rid-of-django-cookicutter
 
 jobs:
   deploy:
@@ -29,26 +30,17 @@ jobs:
       - name: Build and Push Django Image
         uses: docker/build-push-action@v5
         with:
-          context: .
-          file: ./compose/production/django/Dockerfile
+          context: ./backend
+          file: ./backend/compose/production/django/Dockerfile
           push: true
           platforms: linux/arm64,linux/amd64
           tags: ghcr.io/${{ github.repository_owner }}/personal_website_django:latest
 
-      - name: Build and Push Postgres Image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: ./compose/production/postgres/Dockerfile
-          push: true
-          platforms: linux/arm64,linux/amd64
-          tags: ghcr.io/${{ github.repository_owner }}/personal_website_postgres:latest
-
       - name: Build and Push Nginx Image
         uses: docker/build-push-action@v5
         with:
-          context: .
-          file: ./compose/production/nginx/Dockerfile
+          context: ./backend
+          file: ./backend/compose/production/nginx/Dockerfile
           push: true
           platforms: linux/arm64,linux/amd64
           tags: ghcr.io/${{ github.repository_owner }}/personal_website_nginx:latest
@@ -77,18 +69,10 @@ jobs:
             docker pull ghcr.io/${{ github.repository_owner }}/personal_website_django:latest
 
             # Set environment variables and run docker compose
-            export POSTGRES_USER=${{ secrets.POSTGRES_USER }}
-            export POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
-            export POSTGRES_DB=${{ secrets.POSTGRES_DB }}
-            export POSTGRES_HOST=${{ secrets.POSTGRES_HOST }}
-            export POSTGRES_PORT=${{ secrets.POSTGRES_PORT || '5432' }}  # Use secret or default
             export DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}
-            export DJANGO_ADMIN_URL=${{ secrets.DJANGO_ADMIN_URL }}
             export DJANGO_ALLOWED_HOSTS=${{ secrets.DJANGO_ALLOWED_HOSTS }}
+            export CSRF_TRUSTED_ORIGINS=${{ secrets.CSRF_TRUSTED_ORIGINS }}
             export SENTRY_DSN=${{ secrets.SENTRY_DSN }}
-            export REDIS_URL=${{ secrets.REDIS_URL }}
-            export CELERY_FLOWER_USER=${{ secrets.CELERY_FLOWER_USER }}
-            export CELERY_FLOWER_PASSWORD=${{ secrets.CELERY_FLOWER_PASSWORD }}
 
             # Change directory to the personal_website directory
             cd ~/personal_website

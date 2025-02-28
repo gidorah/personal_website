@@ -275,6 +275,8 @@ personal_website/media/
 .ipython/
 personal_website/static/webpack_bundles/
 webpack-stats.json
-.envs/*
+**/.envs/*
 .env
-!.envs/.local/
+
+# Sqlite
+*.sqlite3
