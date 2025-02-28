@@ -36,3 +36,27 @@ logs *args:
 # manage: Executes `manage.py` command.
 manage +args:
     @docker compose run --rm django python ./manage.py {{args}}
+
+# staging_build: Build staging python image.
+staging_build:
+    @echo "Building staging python image..."
+    @docker compose -f docker-compose.staging.yml build
+
+# staging_up: Start up staging containers.
+staging_up:
+    @echo "Starting up staging containers..."
+    @docker compose -f docker-compose.staging.yml up -d --remove-orphans
+
+# staging_down: Stop staging containers.
+staging_down:
+    @echo "Stopping staging containers..."
+    @docker compose -f docker-compose.staging.yml down
+
+# staging_prune: Remove staging containers and their volumes.
+staging_prune *args:
+    @echo "Killing staging containers and removing volumes..."
+    @docker compose -f docker-compose.staging.yml down -v {{args}}
+
+# staging_logs: View staging container logs
+staging_logs *args:
+    @docker compose -f docker-compose.staging.yml logs -f {{args}}
