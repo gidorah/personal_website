@@ -71,7 +71,7 @@ COPY --from=client-builder --chown=django:django ${APP_HOME} ${APP_HOME}
 # Copy all project
 COPY --chown=django:django . ${APP_HOME}
 
-COPY ./backend/compose/production/django/start /start
+COPY ./compose/production/django/start /start
 RUN sed -i 's/\r$//g' /start
 RUN chmod +x /start
 
