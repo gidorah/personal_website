@@ -4,6 +4,8 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
+# Create data directory if it doesn't exist
+mkdir -p /app/data
 
 python /app/manage.py migrate
 python /app/manage.py collectstatic --noinput
