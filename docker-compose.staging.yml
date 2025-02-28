@@ -8,12 +8,10 @@ services:
       dockerfile: ./compose/production/django/Dockerfile
     image: personal_website_production_django
     volumes:
-      - production_sqlite_data:/app
+      - production_sqlite_data:/app/db.sqlite3
     command: /start
     env_file:
       - .env
-    environment:
-      - DJANGO_STATIC_ROOT=/app/staticfiles
 
   nginx:
     build:

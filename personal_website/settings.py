@@ -125,7 +125,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = "static/"
-STATIC_ROOT = os.environ.get("DJANGO_STATIC_ROOT", BASE_DIR / "staticfiles")
+# Ensure STATIC_ROOT is set to an absolute path
+if os.environ.get("BUILD_ENV") == "production":
+    STATIC_ROOT = "/app/staticfiles"
+else:
+    STATIC_ROOT = str(BASE_DIR / "staticfiles")
 
 # WhiteNoise configuration
 STORAGES = {
