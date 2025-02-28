@@ -3,10 +3,7 @@ volumes:
 
 services:
   django:
-    build:
-      context: .
-      dockerfile: ./compose/production/django/Dockerfile
-    image: personal_website_production_django
+    image: ghcr.io/gidorah/personal_website_django:latest
     volumes:
       - production_sqlite_data:/app/data
     command: /start
