@@ -15,3 +15,6 @@ services:
     environment:
       - REMOTE_DEBUGGING_PORT=5678
     command: /start
+
+volumes:
+  sqlite-data:
