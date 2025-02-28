@@ -60,3 +60,7 @@ staging_prune *args:
 # staging_logs: View staging container logs
 staging_logs *args:
     @docker compose -f docker-compose.staging.yml logs -f {{args}}
+
+# manage: Executes `manage.py` command.
+staging_manage +args:
+    @docker compose -f docker-compose.staging.yml run --rm django python manage.py {{args}}
