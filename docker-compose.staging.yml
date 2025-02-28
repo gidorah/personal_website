@@ -12,6 +12,8 @@ services:
     command: /start
     env_file:
       - .env
+    environment:
+      - DJANGO_STATIC_ROOT=/app/staticfiles
 
   nginx:
     build:
