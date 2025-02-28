@@ -3,10 +3,8 @@ FROM docker.io/node:22.14-bookworm-slim AS client-builder
 ARG APP_HOME=/app
 WORKDIR ${APP_HOME}
 
-COPY ./package.json ${APP_HOME}
-RUN npm install && npm cache clean --force
 COPY . ${APP_HOME}
-RUN npm run build
+
 # define an alias for the specific python version used in this file.
 FROM docker.io/python:3.12.9-slim-bookworm AS python
 
