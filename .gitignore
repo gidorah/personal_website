@@ -277,7 +277,6 @@ personal_website/static/webpack_bundles/
 webpack-stats.json
 .envs/*
 .env
-!.envs/.local/
 
 # Sqlite
 *.sqlite3
