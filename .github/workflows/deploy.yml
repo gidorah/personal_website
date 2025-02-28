@@ -31,7 +31,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: ./compose/production/django/Dockerfile
+          file: ./backend/compose/production/django/Dockerfile
           push: true
           platforms: linux/arm64,linux/amd64
           tags: ghcr.io/${{ github.repository_owner }}/personal_website_django:latest
@@ -40,7 +40,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: ./compose/production/nginx/Dockerfile
+          file: ./backend/compose/production/nginx/Dockerfile
           push: true
           platforms: linux/arm64,linux/amd64
           tags: ghcr.io/${{ github.repository_owner }}/personal_website_nginx:latest
