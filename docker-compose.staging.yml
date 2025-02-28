@@ -14,46 +14,9 @@ services:
     image: personal_website_production_django
     volumes:
       - production_django_media:/app/personal_website/media
-    depends_on:
-      - postgres
-      - redis
     command: /start
     env_file:
       - .env
-
-  postgres:
-    build:
-      context: .
-      dockerfile: ./compose/production/postgres/Dockerfile
-    image: personal_website_production_postgres
-    volumes:
-      - production_postgres_data:/var/lib/postgresql/data
-      - production_postgres_data_backups:/backups
-    env_file:
-      - .env
-
-  redis:
-    image: docker.io/redis:6
-
-    volumes:
-      - production_redis_data:/data
-    env_file:
-      - .env
-
-  celeryworker:
-    <<: *django
-    image: personal_website_production_celeryworker
-    command: /start-celeryworker
-
-  celerybeat:
-    <<: *django
-    image: personal_website_production_celerybeat
-    command: /start-celerybeat
-
-  flower:
-    <<: *django
-    image: personal_website_production_flower
-    command: /start-flower
 
   nginx:
     build:
@@ -63,7 +26,7 @@ services:
     depends_on:
       - django
     ports:
-      - "127.0.0.1:8080:80"
-      - "127.0.0.1:8443:443"
+      - '127.0.0.1:8080:80'
+      - '127.0.0.1:8443:443'
     env_file:
       - .env

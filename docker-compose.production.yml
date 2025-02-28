@@ -1,9 +1,5 @@
 volumes:
-  production_postgres_data: {}
-  production_postgres_data_backups: {}
-  production_traefik: {}
-  production_django_media: {}
-  production_redis_data: {}
+  production_sqlite_data: {}
 
 services:
   django: &django
@@ -69,5 +65,5 @@ services:
     depends_on:
       - django
     ports:
-      - "127.0.0.1:8080:80"
-      - "127.0.0.1:8443:443"
+      - '127.0.0.1:8080:80'
+      - '127.0.0.1:8443:443'
