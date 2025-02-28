@@ -3,10 +3,6 @@ FROM docker.io/node:22.14-bookworm-slim AS client-builder
 ARG APP_HOME=/app
 WORKDIR ${APP_HOME}
 
-COPY ./compose/production/django/start /start
-RUN sed -i 's/\r$//g' /start
-RUN chmod +x /start
-
 COPY . ${APP_HOME}
 
 # define an alias for the specific python version used in this file.
@@ -74,6 +70,10 @@ COPY --from=client-builder --chown=django:django ${APP_HOME} ${APP_HOME}
 
 # Copy all project
 COPY --chown=django:django . ${APP_HOME}
+
+COPY ./compose/production/django/start /start
+RUN sed -i 's/\r$//g' /start
+RUN chmod +x /start
 
 # make django owner of the WORKDIR directory as well.
 RUN chown -R django:django ${APP_HOME}
