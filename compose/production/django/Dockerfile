@@ -3,6 +3,10 @@ FROM docker.io/node:22.14-bookworm-slim AS client-builder
 ARG APP_HOME=/app
 WORKDIR ${APP_HOME}
 
+COPY ./compose/production/django/start /start
+RUN sed -i 's/\r$//g' /start
+RUN chmod +x /start
+
 COPY . ${APP_HOME}
 
 # define an alias for the specific python version used in this file.
