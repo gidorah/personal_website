@@ -17,5 +17,16 @@ services:
       - REMOTE_DEBUGGING_PORT=5678
     command: /start
 
+  nextjs:
+    build:
+      context: ./frontend
+      dockerfile: ./compose/local/Dockerfile
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - '3000:3000'
+    command: npm run dev
+
 volumes:
   local_sqlite_data: {}
