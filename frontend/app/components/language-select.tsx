@@ -1,5 +1,6 @@
 "use client";
 
+import Link from 'next/link';
 import React, { useState } from 'react';
 
 interface LanguageSelectProps {
@@ -31,12 +32,12 @@ const LanguageSelect: React.FC<LanguageSelectProps> = ({ className = "" }) => {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
-            <button className="language-button">{language.toUpperCase()}</button>
+            <button className="language-button ">{language.toUpperCase()}</button>
             {
                 isOpen && (
-                    <ul className="language-dropdown absolute top-full left-0 z-10 bg-white dark:bg-gray-800 shadow-md rounded">
-                        <li onClick={() => handleLanguageChange('en')}>EN</li>
-                        <li onClick={() => handleLanguageChange('tr')}>TR</li>
+                    <ul className="language-dropdown absolute top-full z-10 bg-white dark:bg-gray-800 flex flex-col items-center">
+                        <li onClick={() => handleLanguageChange('tr')}><Link href="">TR</Link></li>
+                        <li onClick={() => handleLanguageChange('en')}><Link href="">EN</Link></li>
                     </ul>
                 )
             }
