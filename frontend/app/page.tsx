@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 function Header({ title, text, hidden = false }: { title: string, text?: string, hidden?: boolean }) {
@@ -21,15 +22,12 @@ export default function HomePage() {
 
   return (
     <div id="app">
-      <div>
-        <Header title="Next.js" text="dude, where is my react?" />
-        <ul>
-          {names.map(name => (
-            <li key={name}>{name}</li>
-          ))}
-        </ul>
-        <button onClick={handleClick}>Like({likes})</button>
-        <button onClick={handleClick}>Like({doubleLikes})</button>
+      <div className="flex items-center">
+        <Image src="/Bender_Rodriguez.png" alt="bender" width={360} height={550} />
+        <div className="flex flex-col">
+          <strong className="basis">Bender Rodrigez</strong>
+          <span>Evil Robot: flex: This class sets the display property of the div to flex. This enables flexbox layout for the div, making its direct children flex items. Flexbox is a powerful CSS layout module that provides an efficient way to distribute space among items in a container, even when their size is unknown or dynamic.</span>
+        </div>
       </div>
     </div>
   );
