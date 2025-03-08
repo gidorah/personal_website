@@ -14,27 +14,33 @@ const navItems = {
     }
 }
 
-const navItemClass = clsx("transition-all hover:text-neutral-500 dark:hover:text-neutral-200 relative py-1 px-2 m-1");
+const navItemClass = clsx("transition-all hover:text-neutral-500 dark:hover:text-neutral-200 relative p-2 mx-2 mx-3");
 
 export function NavBar() {
     return (
         <aside>
             <div>
                 <nav id="nav">
-                    <div className="flex">
-                        <Link href="/" className={navItemClass}>Onur Akyüz</Link>
-                        <LanguageSelect className={navItemClass} />
-                        {Object.entries(navItems).map(([path, { name }]) => {
-                            return (
-                                <Link
-                                    key={path}
-                                    href={path}
-                                    className={navItemClass}
-                                >
-                                    {name}
-                                </Link>
-                            )
-                        })}
+                    <div className="flex justify-center gap-12">
+                        <div className="flex">
+                            <Link href="/" className={navItemClass}>Onur Akyüz</Link>
+                            <div className="border-1"></div>
+                            <LanguageSelect className={navItemClass} />
+                        </div>
+                        <div className="flex">
+                            {Object.entries(navItems).map(([path, { name }]) => {
+                                return (
+                                    <Link
+                                        key={path}
+                                        href={path}
+                                        className={navItemClass}
+                                    >
+                                        {name}
+                                    </Link>
+                                )
+                            })}
+                        </div>
+
                     </div>
                 </nav>
             </div>
