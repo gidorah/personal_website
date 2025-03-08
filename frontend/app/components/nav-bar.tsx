@@ -14,15 +14,15 @@ const navItems = {
     }
 }
 
-const navItemClass = clsx("transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1");
+const navItemClass = clsx("transition-all hover:text-neutral-500 dark:hover:text-neutral-200 relative py-1 px-2 m-1");
 
 export function NavBar() {
     return (
         <aside>
             <div>
                 <nav id="nav">
-                    <div className="flex flex-row space-x-0 pr-10">
-                        <p className={navItemClass}>Onur Akyüz</p>
+                    <div className="flex">
+                        <Link href="/" className={navItemClass}>Onur Akyüz</Link>
                         <LanguageSelect className={navItemClass} />
                         {Object.entries(navItems).map(([path, { name }]) => {
                             return (
