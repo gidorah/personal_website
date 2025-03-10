@@ -23,11 +23,11 @@ export default function Nav() {
     ]
 
     return (
-        <div className="fixed left-0 top-5 z-50 w-full">
+        <div className="mt-8 mb-16">
             <nav className="text-text border-border dark:border-darkBorder shadow-light dark:shadow-dark mx-auto flex w-max gap-5 rounded-base border-2 bg-bg p-2.5 px-5 text-sm font-base sm:text-base w450:gap-4">
                 {links.map((link) => {
                     return (
-                        <Button>{link.text}</Button>
+                        <Button key={link.text}>{link.text}</Button>
                     )
                 })}
                 <ThemeSwitcher />
