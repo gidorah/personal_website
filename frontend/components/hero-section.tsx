@@ -1,11 +1,12 @@
 import Image from 'next/image';
 import Links from './links';
+import { Card } from './ui/card';
 
 
 
 export function HeroSection() {
     return (
-        <section className="flex items-center justify-center gap-8">
+        <section className="flex  justify-center gap-8">
             <div className="flex flex-col gap-4">
                 <h1 className='text-5xl font-semibold'>I'm Onur Akyüz</h1>
                 <h2>I craft innovative web solutions.</h2>
@@ -15,7 +16,10 @@ export function HeroSection() {
                 <Links />
             </div>
             <div>
-                <Image src="/hero-avatar.png" alt="Picture of Onur" width={360} height={640}></Image>
+                <Card className='bg-'>
+                    <Image src="/hero-avatar.png" alt="Picture of Onur" width={360} height={640}></Image>
+                </Card>
+
             </div>
         </section>
     )
