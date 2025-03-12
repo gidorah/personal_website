@@ -2,14 +2,14 @@ services:
 
   nextjs:
     build:
-      context: ./frontend
+      context: .
       dockerfile: ./compose/local/Dockerfile
     volumes:
-      - ./frontend:/app
+      - .:/app
       - /app/node_modules
     ports:
       - '3000:3000'
-    command: npm run dev
+    command: pnpm dev
 
 volumes:
   local_sqlite_data: {}

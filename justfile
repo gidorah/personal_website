@@ -9,9 +9,9 @@ export COMPOSE_FILE := "docker-compose.local.yml"
 default:
     @just --list
 
-# build: Build python image.
+# build: Build image.
 build:
-    @echo "Building python image..."
+    @echo "Building image..."
     @docker compose build
 
 # up: Start up containers.
@@ -33,13 +33,9 @@ prune *args:
 logs *args:
     @docker compose logs -f {{args}}
 
-# manage: Executes `manage.py` command.
-manage +args:
-    @docker compose run --rm django python ./manage.py {{args}}
-
-# staging_build: Build staging python image.
+# staging_build: Build staging image.
 staging_build:
-    @echo "Building staging python image..."
+    @echo "Building staging image..."
     @docker compose -f docker-compose.staging.yml build
 
 # staging_up: Start up staging containers.
@@ -60,7 +56,3 @@ staging_prune *args:
 # staging_logs: View staging container logs
 staging_logs *args:
     @docker compose -f docker-compose.staging.yml logs -f {{args}}
-
-# manage: Executes `manage.py` command.
-staging_manage +args:
-    @docker compose -f docker-compose.staging.yml run --rm django python manage.py {{args}}
