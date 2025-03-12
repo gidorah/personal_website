@@ -41,7 +41,7 @@ export default function Nav() {
                         </Link>
                     )
                 })}
-                <ThemeSwitcher />
+                {/* <ThemeSwitcher /> */}
             </nav>
         </div>
     )
