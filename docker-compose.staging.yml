@@ -5,14 +5,14 @@ services:
 
   nextjs:
     build:
-      context: ./frontend
+      context: .
       dockerfile: ./compose/production/Dockerfile
     image: personal_website_production_nextjs
     environment:
       - NEXT_PUBLIC_SENTRY_DSN=${SENTRY_DSN}
       - NODE_ENV=production
     volumes:
-      - ./frontend:/app
+      - .:/app
     ports:
       - '127.0.0.1:3000:3000'
 
