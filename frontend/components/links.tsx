@@ -55,7 +55,7 @@ const buttonVariants = {
 export default function Links() {
 
     return (
-        <div className="flex flex-col items-center lg:items-start mb-8">
+        <div className="flex flex-col items-center md:items-start">
             <motion.div
                 className="flex space-x-6 mb-6"
                 variants={itemVariants}
@@ -82,15 +82,7 @@ export default function Links() {
                 </motion.a>
             </motion.div>
 
-            {/* Removed hover effect here */}
-            <motion.div
-                variants={buttonVariants}
-                initial="hidden"
-                animate="visible"
-                whileTap="tap"
-            >
-                <Button>Get in Touch</Button>
-            </motion.div>
+            <Button>Get in Touch</Button>
         </div>
     )
 }
