@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { Button } from './ui/button';
+import Link from 'next/link';
 
 
 const itemVariants = {
@@ -66,7 +67,9 @@ export default function Links() {
                 </motion.a>
             </motion.div>
 
-            <Button>Get in Touch</Button>
+            <Link href="mailto:mail@onur.sh" target="_blank">
+                <Button>Get in Touch</Button>
+            </Link>
         </div>
     )
 }
