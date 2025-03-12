@@ -28,7 +28,7 @@ export default function RootLayout({
         className={`${workSans.className} antialiased bg-[#fffbee]`}
       >
         <Nav />
-        {children}
+        <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">{children}</main>
       </body>
     </html>
   );
