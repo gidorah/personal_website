@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { ThemeSwitcher } from './theme-switcher'
+// import { ThemeSwitcher } from './theme-switcher'
 import { Button } from './ui/button'
 
 interface NavLink {
