@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - 14-get-rid-of-django-cookicutter
 
 jobs:
   deploy:
@@ -69,9 +68,6 @@ jobs:
             docker pull ghcr.io/${{ github.repository_owner }}/personal_website_nextjs:latest
 
             # Set environment variables and run docker compose
-            # export DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}
-            # export DJANGO_ALLOWED_HOSTS=${{ secrets.DJANGO_ALLOWED_HOSTS }}
-            export CSRF_TRUSTED_ORIGINS=${{ secrets.CSRF_TRUSTED_ORIGINS }}
             export SENTRY_DSN=${{ secrets.SENTRY_DSN }}
 
             # Change directory to the personal_website directory

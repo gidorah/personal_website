@@ -11,8 +11,8 @@ services:
     environment:
       - NEXT_PUBLIC_SENTRY_DSN=${SENTRY_DSN}
       - NODE_ENV=production
-    ports:
-      - '127.0.0.1:3000:3000'
+    expose:
+      - 3000
 
   nginx:
     build:
@@ -22,7 +22,7 @@ services:
     depends_on:
       - nextjs
     ports:
-      - '127.0.0.1:8080:80'
-      - '127.0.0.1:8443:443'
+      - '127.0.0.1:8082:80'
+      - '127.0.0.1:8445:443'
     env_file:
       - .env
