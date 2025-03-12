@@ -1,53 +1,54 @@
 import {
     type IconType,
-    SiAstro,
-    SiBootstrap,
+    SiCplusplus,
     SiCss3,
+    SiDjango,
     SiDocker,
+    SiFlask,
     SiHtml5,
     SiJavascript,
-    SiMongodb,
     SiMysql,
     SiNextdotjs,
     SiNginx,
-    SiNodedotjs,
     SiPostgresql,
+    SiPython,
+    SiQt,
     SiReact,
     SiRedis,
-    SiRubyonrails,
-    SiSass,
-    SiTailwindcss,
+    SiTailwindcss
 } from '@icons-pack/react-simple-icons';
 
 const SKILLS: { field: string; skills: { skill: string; icon: IconType }[] }[] =
     [
         {
-            field: 'Frontend',
+            field: "Languages",
             skills: [
+                { skill: 'python', icon: SiPython },
+                { skill: 'c++', icon: SiCplusplus },
+                { skill: 'javascript', icon: SiJavascript },
                 { skill: 'html', icon: SiHtml5 },
                 { skill: 'css', icon: SiCss3 },
-                { skill: 'javascript', icon: SiJavascript },
+            ],
+        },
+        {
+            field: 'Frontend',
+            skills: [
                 { skill: 'react', icon: SiReact },
-                { skill: 'sass', icon: SiSass },
                 { skill: 'tailwind', icon: SiTailwindcss },
                 { skill: 'nextjs', icon: SiNextdotjs },
-                { skill: 'astro', icon: SiAstro },
-                {
-                    skill: 'bootstrap',
-                    icon: SiBootstrap,
-                },
+                { skill: 'qt', icon: SiQt },
             ],
         },
         {
             field: 'Backend',
             skills: [
                 {
-                    skill: 'nodejs',
-                    icon: SiNodedotjs,
+                    skill: 'django',
+                    icon: SiDjango,
                 },
                 {
-                    skill: 'ruby on rails',
-                    icon: SiRubyonrails,
+                    skill: 'flask',
+                    icon: SiFlask,
                 },
                 {
                     skill: 'redis',
@@ -56,10 +57,6 @@ const SKILLS: { field: string; skills: { skill: string; icon: IconType }[] }[] =
                 {
                     skill: 'postgresql',
                     icon: SiPostgresql,
-                },
-                {
-                    skill: 'mongodb',
-                    icon: SiMongodb,
                 },
                 {
                     skill: 'mysql',

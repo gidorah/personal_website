@@ -8,10 +8,13 @@ export default function About() {
 
             <div className="mb-10 text-base sm:text-lg">
                 <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est
-                    consequatur, harum pariatur provident rerum placeat magni voluptas
-                    consectetur in exercitationem nobis aut, molestiae iure possimus
-                    aspernatur nesciunt laudantium ab atque.
+                    Full-Stack Developer with 10+ years of proven success in the software development lifecycle,
+                    from initial concept to deployment and maintenance. My passion is crafting high-quality,
+                    scalable applications using technologies like Python (Flask, Django), React, Next.js, C++, and Qt.
+                    I bring expertise in event-driven architectures and real-time data processing to deliver innovative solutions.
+                    Beyond technical skills, I pride myself on clear communication and a collaborative approach,
+                    ensuring projects are not only well-built but also a positive experience for my clients.
+                    I am dedicated to understanding your needs and delivering exceptional results that drive your success.
                 </p>
             </div>
 
