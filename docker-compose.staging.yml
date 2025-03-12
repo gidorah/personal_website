@@ -37,7 +37,7 @@ services:
       dockerfile: ./compose/production/nginx/Dockerfile
     image: personal_website_production_nginx
     depends_on:
-      - django
+      - nextjs
     ports:
       - '127.0.0.1:3000:80'
       - '127.0.0.1:8443:443'
