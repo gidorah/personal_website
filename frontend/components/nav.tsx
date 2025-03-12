@@ -5,23 +5,29 @@ import { usePathname } from 'next/navigation'
 import { ThemeSwitcher } from './theme-switcher'
 import { Button } from './ui/button'
 
+interface NavLink {
+
+    path: string;
+    text: string;
+}
+
+const links: NavLink[] = [
+    {
+        path: '/',
+        text: 'Home',
+    },
+    {
+        path: '/about',
+        text: 'About',
+    },
+    {
+        path: '/work',
+        text: 'Work',
+    },
+]
+
 export default function Nav() {
     const path = usePathname()
-
-    const links = [
-        {
-            path: '/',
-            text: 'Home',
-        },
-        {
-            path: '/about',
-            text: 'About',
-        },
-        {
-            path: '/work',
-            text: 'Work',
-        },
-    ]
 
     return (
         <div className="mt-8 mb-16" >
