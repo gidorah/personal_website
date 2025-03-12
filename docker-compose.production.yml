@@ -7,8 +7,7 @@ services:
     image: ghcr.io/gidorah/personal_website_nextjs:latest
     environment:
       - NEXT_PUBLIC_SENTRY_DSN=${SENTRY_DSN}
-    volumes:
-      - .:/app
+      - NODE_ENV=production
     ports:
       - '127.0.0.1:3000:3000'
 

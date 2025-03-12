@@ -26,21 +26,12 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_TOKEN }}
-
-      # - name: Build and Push Django Image
-      #   uses: docker/build-push-action@v6
-      #   with:
-      #     context: ./backend
-      #     file: ./backend/compose/production/django/Dockerfile
-      #     push: true
-      #     platforms: linux/arm64,linux/amd64
-      #     tags: ghcr.io/${{ github.repository_owner }}/personal_website_django:latest
       
       - name: Build and Push Next.js Image
         uses: docker/build-push-action@v6
         with:
-          context: ./frontend
-          file: ./frontend/compose/production/Dockerfile
+          context: .
+          file: ./compose/production/Dockerfile
           push: true
           platforms: linux/arm64,linux/amd64
           tags: ghcr.io/${{ github.repository_owner }}/personal_website_nextjs:latest
@@ -48,8 +39,8 @@ jobs:
       - name: Build and Push Nginx Image
         uses: docker/build-push-action@v6
         with:
-          context: ./backend
-          file: ./backend/compose/production/nginx/Dockerfile
+          context: .
+          file: ./compose/production/nginx/Dockerfile
           push: true
           platforms: linux/arm64,linux/amd64
           tags: ghcr.io/${{ github.repository_owner }}/personal_website_nginx:latest
