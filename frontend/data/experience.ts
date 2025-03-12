@@ -6,28 +6,52 @@ const PAST_ROLES: {
     endDate: string
 }[] = [
         {
-            company: 'ACME Solutions',
-            role: 'CEO',
+            company: 'Savronik Elektronik A.Ş.',
+            role: 'Solution Architect',
             description:
-                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam vel hic aspernatur molestiae exercitationem rerum reiciendis mollitia magnam harum ipsum?',
-            startDate: 'March 2023',
-            endDate: 'Now',
+                'Led architectural decisions and technical solutions for complex software systems.',
+            startDate: 'January 2021',
+            endDate: 'July 2024',
         },
         {
-            company: 'Google',
+            company: 'Savronik Elektronik A.Ş.',
+            role: 'Software Line Group Manager',
+            description:
+                'Managed multiple software teams and coordinated cross-functional project deliveries.',
+            startDate: 'July 2019',
+            endDate: 'January 2021',
+        },
+        {
+            company: 'Savronik Elektronik A.Ş.',
+            role: 'Software Manager',
+            description:
+                'Oversaw software development processes and team performance.',
+            startDate: 'January 2018',
+            endDate: 'July 2019',
+        },
+        {
+            company: 'Savronik Elektronik A.Ş.',
+            role: 'Team Lead',
+            description:
+                'Led software development teams and managed project deliverables.',
+            startDate: 'November 2014',
+            endDate: 'January 2018',
+        },
+        {
+            company: 'Savronik Elektronik A.Ş.',
             role: 'Software Engineer',
             description:
-                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam vel hic aspernatur molestiae exercitationem rerum reiciendis mollitia magnam harum ipsum?',
-            startDate: 'April 2021',
-            endDate: 'March 2023',
+                'Developed and maintained software solutions for electronic systems.',
+            startDate: 'November 2012',
+            endDate: 'January 2014',
         },
         {
-            company: 'Vercel',
-            role: 'Developer Advocate',
+            company: 'Eskişehir Osmangazi Üniversitesi - MLCV Lab',
+            role: 'Software Engineer',
             description:
-                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam vel hic aspernatur molestiae exercitationem rerum reiciendis mollitia magnam harum ipsum?',
-            startDate: 'April 2021',
-            endDate: 'June 2018',
+                'Implemented and optimized computer vision algorithms in C++ for face and person detection.',
+            startDate: 'July 2011',
+            endDate: 'July 2012',
         },
     ]
 
