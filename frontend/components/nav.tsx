@@ -28,11 +28,11 @@ export default function Nav() {
             <nav className="text-text border-border dark:border-darkBorder shadow-light dark:shadow-dark mx-auto flex w-max gap-5 rounded-base border-2 bg-bg p-2.5 px-5 text-sm font-base sm:text-base w450:gap-4">
                 {links.map((link) => {
                     return (
-                        <Button key={link.text} className={path === link.path ? 'bg-main ' : 'bg-secondary'}>
-                            <Link href={link.path} className='flex items-center justify-center h-full w-full m-0 p-0'>
+                        <Link href={link.path} key={link.text}>
+                            <Button className={path === link.path ? 'bg-main ' : 'bg-secondary'}>
                                 {link.text}
-                            </Link>
-                        </Button>
+                            </Button>
+                        </Link>
                     )
                 })}
                 <ThemeSwitcher />
