@@ -36,22 +36,6 @@ const socialIconVariants = {
     }
 }
 
-const buttonVariants = {
-    hidden: { scale: 0 },
-    visible: {
-        scale: 1,
-        transition: {
-            type: "spring",
-            stiffness: 260,
-            damping: 20,
-            delay: 1.5  // Delay the button's appearance after marquee
-        }
-    },
-    tap: {
-        scale: 0.95
-    }
-}
-
 export default function Links() {
 
     return (

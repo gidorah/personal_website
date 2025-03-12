@@ -17,6 +17,20 @@ services:
       - BUILD_ENV=production
       - PYTHONPATH=/app
 
+  nextjs:
+    build:
+      context: ./frontend
+      dockerfile: ./compose/production/Dockerfile
+    image: personal_website_production_nextjs
+    environment:
+      - NEXT_PUBLIC_SENTRY_DSN=${SENTRY_DSN}
+      - NODE_ENV=production
+    command: /start
+    volumes:
+      - ./frontend:/app
+    ports:
+      - '127.0.0.1:3000:3000'
+
   nginx:
     build:
       context: ./backend
@@ -25,7 +39,7 @@ services:
     depends_on:
       - django
     ports:
-      - '127.0.0.1:8080:80'
+      - '127.0.0.1:3000:80'
       - '127.0.0.1:8443:443'
     env_file:
       - .env

@@ -2,21 +2,31 @@ volumes:
   production_sqlite_data: {}
 
 services:
-  django:
-    image: ghcr.io/gidorah/personal_website_django:latest
-    volumes:
-      - production_sqlite_data:/app/data
-    command: /start
+  # django:
+  #   image: ghcr.io/gidorah/personal_website_django:latest
+  #   volumes:
+  #     - production_sqlite_data:/app/data
+  #   command: /start
+  #   environment:
+  #     - DJANGO_SETTINGS_MODULE=personal_website.settings
+  #     - BUILD_ENV=production
+  #     - PYTHONPATH=/app
+  #     - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
+  #     - DJANGO_SECURE_SSL_REDIRECT=${DJANGO_SECURE_SSL_REDIRECT:-False}
+  #     - WEB_CONCURRENCY=${WEB_CONCURRENCY:-4}
+  #     - DJANGO_ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
+  #     - CSRF_TRUSTED_ORIGINS=${CSRF_TRUSTED_ORIGINS}
+  #     - SENTRY_DSN=${SENTRY_DSN}
+
+  nextjs:
+    image: ghcr.io/gidorah/personal_website_nextjs:latest
     environment:
-      - DJANGO_SETTINGS_MODULE=personal_website.settings
-      - BUILD_ENV=production
-      - PYTHONPATH=/app
-      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
-      - DJANGO_SECURE_SSL_REDIRECT=${DJANGO_SECURE_SSL_REDIRECT:-False}
-      - WEB_CONCURRENCY=${WEB_CONCURRENCY:-4}
-      - DJANGO_ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
-      - CSRF_TRUSTED_ORIGINS=${CSRF_TRUSTED_ORIGINS}
-      - SENTRY_DSN=${SENTRY_DSN}
+      - NEXT_PUBLIC_SENTRY_DSN=${SENTRY_DSN}
+    command: /start
+    volumes:
+      - ./frontend:/app
+    ports:
+      - '127.0.0.1:3000:3000'
 
   nginx:
     image: ghcr.io/gidorah/personal_website_nginx:latest
