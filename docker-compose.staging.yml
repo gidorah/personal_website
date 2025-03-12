@@ -2,20 +2,6 @@ volumes:
   production_sqlite_data: {}
 
 services:
-  django:
-    build:
-      context: ./backend
-      dockerfile: ./compose/production/django/Dockerfile
-    image: personal_website_production_django
-    volumes:
-      - production_sqlite_data:/app/data
-    command: /start
-    env_file:
-      - .env
-    environment:
-      - DJANGO_SETTINGS_MODULE=personal_website.settings
-      - BUILD_ENV=production
-      - PYTHONPATH=/app
 
   nextjs:
     build:
@@ -25,7 +11,6 @@ services:
     environment:
       - NEXT_PUBLIC_SENTRY_DSN=${SENTRY_DSN}
       - NODE_ENV=production
-    command: /start
     volumes:
       - ./frontend:/app
     ports:

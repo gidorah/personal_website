@@ -1,21 +1,4 @@
 services:
-  django: &django
-    build:
-      context: ./backend
-      dockerfile: ./compose/local/django/Dockerfile
-    image: personal_website_local_django
-    container_name: personal_website_local_django
-    volumes:
-      - ./backend:/app
-      - local_sqlite_data:/app/data
-    env_file:
-      - ./backend/.envs/.local/.django
-    ports:
-      - '8000:8000'
-      - '5678:5678' # Debug port
-    environment:
-      - REMOTE_DEBUGGING_PORT=5678
-    command: /start
 
   nextjs:
     build:
