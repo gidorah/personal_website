@@ -18,7 +18,7 @@ services:
 
   nginx:
     build:
-      context: ./backend
+      context: .
       dockerfile: ./compose/production/nginx/Dockerfile
     image: personal_website_production_nginx
     depends_on:

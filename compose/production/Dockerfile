@@ -1,26 +1,39 @@
-# Use the official Node.js 20 image as the base image
-FROM node:20-alpine
+FROM node:20-alpine AS builder
 
 # Install pnpm
 RUN npm install -g pnpm
 
-# Set the working directory
 WORKDIR /app
 
-# Copy package.json and pnpm-lock.yaml
+# Copy package files
 COPY package.json pnpm-lock.yaml ./
 
 # Install dependencies
-RUN pnpm install --prod
+RUN pnpm install
 
-# Copy the rest of the application code
+# Copy source code
 COPY . .
 
-# Build the Next.js application
-RUN pnpm run build
+# Build application
+RUN pnpm build
 
-# Expose the port the app runs on
-EXPOSE 3000
+# Production image
+FROM node:20-alpine
 
-# Start the Next.js application
+WORKDIR /app
+
+# Install pnpm
+RUN npm install -g pnpm
+
+# Copy package files
+COPY package.json pnpm-lock.yaml ./
+
+# Install production dependencies
+RUN pnpm install --prod
+
+# Copy built application
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/public ./public
+
+# Start the application
 CMD ["pnpm", "start"]

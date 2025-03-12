@@ -7,7 +7,13 @@
 .pre-commit-config.yaml
 .readthedocs.yml
 .travis.yml
-venv
 .git
-.envs/
 *.sqlite3
+*.md
+.eslintrc*
+.prettier*
+.env*
+
+# next.js
+.next/
+node_modules/
