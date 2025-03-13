@@ -20,10 +20,10 @@ export default function Work() {
                             >
                                 <Image
                                     className="w-full rounded-base"
-                                    src={`${project.previewImage}`}
+                                    src={project.previewImage}
                                     alt={project.name}
-                                    layout="fill"
-                                    objectFit="cover"
+                                    fill
+                                    style={{ objectFit: 'cover' }}
                                 />
                             </AspectRatio>
 
