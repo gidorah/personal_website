@@ -32,7 +32,7 @@ jobs:
           context: .
           file: ./compose/production/Dockerfile
           push: true
-          platforms: linux/arm64,linux/amd64
+          platforms: linux/arm64
           tags: ghcr.io/${{ github.repository_owner }}/personal_website_nextjs:latest
 
       - name: Build and Push Nginx Image
@@ -41,7 +41,7 @@ jobs:
           context: .
           file: ./compose/production/nginx/Dockerfile
           push: true
-          platforms: linux/arm64,linux/amd64
+          platforms: linux/arm64
           tags: ghcr.io/${{ github.repository_owner }}/personal_website_nginx:latest
 
       - name: Copy compose file to server
@@ -64,7 +64,7 @@ jobs:
           script: |
             echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
 
-            # Pull the Django image (which contains docker-compose.yml)
+            # Pull the Next.js image
             docker pull ghcr.io/${{ github.repository_owner }}/personal_website_nextjs:latest
 
             # Set environment variables and run docker compose

@@ -8,7 +8,9 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm ci
+RUN corepack enable pnpm
+
+RUN pnpm i
 
 # Copy the rest of the application code
 COPY . .
@@ -17,4 +19,4 @@ COPY . .
 EXPOSE 3000
 
 # Start the Next.js application with the --hostname flag to allow external connections
-CMD ["npm", "run", "dev", "--", "--hostname", "0.0.0.0"]
+CMD ["pnpm", "dev", "--hostname", "0.0.0.0"]

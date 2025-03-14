@@ -56,3 +56,17 @@ staging_prune *args:
 # staging_logs: View staging container logs
 staging_logs *args:
     @docker compose -f docker-compose.staging.yml logs -f {{args}}
+
+# test_prod_build: Test production Dockerfile build time
+test_prod_build:
+    @echo "Testing production Dockerfile build time..."
+    @time docker build --progress=plain -t personal_website_nextjs_test -f compose/production/Dockerfile .
+    @echo "\nTesting if the image works (Ctrl+C to stop)..."
+    @docker run --rm -p 3000:3000 personal_website_nextjs_test
+
+# test_local_build: Test local Dockerfile build time
+test_local_build:
+    @echo "Testing local Dockerfile build time..."
+    @time docker build --progress=plain -t personal_website_nextjs_test -f compose/local/Dockerfile .
+    @echo "\nTesting if the image works (Ctrl+C to stop)..."
+    @docker run --rm -p 3000:3000 personal_website_nextjs_test
