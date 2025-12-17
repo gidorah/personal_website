@@ -1,29 +1,29 @@
 "use client";
 
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { Button } from './ui/button';
 import Link from 'next/link';
 
 
-const itemVariants = {
+const itemVariants: Variants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
         y: 0,
         opacity: 1,
         transition: {
             duration: 0.5,
-            ease: "easeOut"
+            ease: "easeOut" as const
         }
     }
 }
 
-const socialIconVariants = {
+const socialIconVariants: Variants = {
     hidden: { scale: 0 },
     visible: {
         scale: 1,
         transition: {
-            type: "spring",
+            type: "spring" as const,
             stiffness: 260,
             damping: 20
         }
