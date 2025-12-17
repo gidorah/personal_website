@@ -18,7 +18,7 @@
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.26",
     "lucide-react": "^0.479.0",
-    "next": "15.1.7",
+    "next": "15.4.10",
     "next-themes": "^0.4.6",
     "next-view-transitions": "^0.3.5",
     "radix-ui": "^1.4.3",
@@ -36,8 +36,15 @@
     "eslint": "^9.39.2",
     "eslint-config-next": "15.1.7",
     "postcss": "^8.5.6",
-    "tailwindcss": "^3.4.1",
+    "tailwindcss": "^3.4.19",
     "typescript": "^5.9.3"
+  },
+  "pnpm": {
+    "overrides": {
+      "glob": "^10.5.0",
+      "brace-expansion@1": "^1.1.12",
+      "brace-expansion@2": "^2.0.2"
+    }
   },
   "packageManager": "pnpm@10.6.2+sha512.47870716bea1572b53df34ad8647b42962bc790ce2bf4562ba0f643237d7302a3d6a8ecef9e4bdfc01d23af1969aa90485d4cebb0b9638fa5ef1daef656f6c1b"
 }
