@@ -14,8 +14,8 @@ importers:
   .:
     dependencies:
       '@icons-pack/react-simple-icons':
-        specifier: ^12.2.0
-        version: 12.2.0(react@19.2.3)
+        specifier: ^13.8.0
+        version: 13.8.0(react@19.2.3)
       '@radix-ui/react-aspect-ratio':
         specifier: ^1.1.8
         version: 1.1.8(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -266,8 +266,8 @@ packages:
     resolution: {integrity: sha512-xeO57FpIu4p1Ri3Jq/EXq4ClRm86dVF2z/+kvFnyqVYRavTZmaFaUBbWCOuuTh0o/g7DSsk6kc2vrS4Vl5oPOQ==}
     engines: {node: '>=18.18'}
 
-  '@icons-pack/react-simple-icons@12.2.0':
-    resolution: {integrity: sha512-fhTX7hlMJzAmolYvqmE28qf+LEkzc79aqiM8GI251eLAdLmSPnN8v25wYxCHXoQGBJmlLvm34GA+SkX1I64VqQ==}
+  '@icons-pack/react-simple-icons@13.8.0':
+    resolution: {integrity: sha512-iZrhL1fSklfCCVn68IYHaAoKfcby3RakUTn2tRPyHBkhr2tkYqeQbjJWf+NizIYBzKBn2IarDJXmTdXd6CuEfw==}
     peerDependencies:
       react: ^16.13 || ^17 || ^18 || ^19
 
@@ -3976,7 +3976,7 @@ snapshots:
 
   '@humanwhocodes/retry@0.4.2': {}
 
-  '@icons-pack/react-simple-icons@12.2.0(react@19.2.3)':
+  '@icons-pack/react-simple-icons@13.8.0(react@19.2.3)':
     dependencies:
       react: 19.2.3
 
