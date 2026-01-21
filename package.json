@@ -39,7 +39,7 @@
     "import-in-the-middle": "^2.0.0",
     "lint-staged": "^16.2.7",
     "postcss": "^8.5.6",
-    "prettier": "^3.7.4",
+    "prettier": "^3.8.1",
     "require-in-the-middle": "^8.0.1",
     "tailwindcss": "^3.4.19",
     "typescript": "^5.9.3"
