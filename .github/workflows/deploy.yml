@@ -27,7 +27,7 @@ jobs:
           password: ${{ secrets.GHCR_TOKEN }}
       
       - name: Build and Push Next.js Image
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: ./compose/production/Dockerfile
@@ -36,7 +36,7 @@ jobs:
           tags: ghcr.io/${{ github.repository_owner }}/personal_website_nextjs:latest
 
       - name: Build and Push Nginx Image
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: ./compose/production/nginx/Dockerfile
