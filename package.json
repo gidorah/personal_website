@@ -38,7 +38,7 @@
     "husky": "^9.1.7",
     "import-in-the-middle": "^3.0.0",
     "lint-staged": "^16.2.7",
-    "postcss": "^8.5.6",
+    "postcss": "^8.5.8",
     "prettier": "^3.8.1",
     "require-in-the-middle": "^8.0.1",
     "tailwindcss": "^3.4.19",
